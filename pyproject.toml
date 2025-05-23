@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "localtoolkit"
+version = "0.1.0"
+description = "A toolkit for local automation on macOS"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "LocalToolkit Team"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: MacOS :: MacOS X",
+]
+dependencies = [
+    "mcp",
+    "fastmcp",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.0",
+    "pytest-cov==4.1.0",
+    "pytest-mock==3.11.1",
+    "pytest-xdist==3.3.1",
+]
+
+[project.scripts]
+localtoolkit = "localtoolkit.cli.main:main"
+ltk = "localtoolkit.cli.run:run_command"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+markers = [
+    "unit: Tests that verify individual functions in isolation",
+    "integration: Tests that verify interactions between components",
+    "e2e: End-to-end tests that require real system interaction (excluded by default)",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v"
+python_classes = ["Test*", "test*"]
+pythonpath = [".", "src"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
