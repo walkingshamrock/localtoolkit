@@ -94,6 +94,9 @@ Each app module registers its tools via `register_to_mcp(mcp: FastMCP)` function
 - `tests/utils/`: Custom assertions, mocks, helpers, and test data generators
 - Tests automatically mock AppleScript execution and validate response formats
 
+## Language Convention
+All code, documentation, comments, and communication in this project must be in English. This ensures consistency and accessibility for all contributors.
+
 ## Workflow Requirements
 
 ### Mandatory Convention Checks
